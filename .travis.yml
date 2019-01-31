@@ -1,0 +1,29 @@
+services:
+  - docker
+
+notifications:
+  email: false
+
+matrix:
+  include:
+    - language: go
+      go:
+        - "1.11"
+      script:
+        - make test
+        - make build
+
+    - language: node_js
+      node_js:
+        - "7"
+      before_install:
+        - cd ui/
+      script: yarn run build
+
+after_success:
+  - docker build -t "quay.io/travelaudience/suxen:${TRAVIS_TAG:-latest}" .
+  - if ([[ "${TRAVIS_BRANCH}" == "master" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false" ]]) || [[ ! -z "${TRAVIS_TAG}" ]];
+    then
+        docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}" quay.io;
+        docker push "quay.io/travelaudience/suxen:${TRAVIS_TAG:-latest}";
+    fi

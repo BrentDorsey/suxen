@@ -1,0 +1,41 @@
+{
+  "imageGroups": [
+    {
+      "id": "ZG9ja2VyLWhvc3RlZDphNDk3OWNjZjcyZGM3MTI4MDMwZDExMGUyYzJkMGMxMQ",
+      "name": "peanuts-service",
+      "maxVersion": "v2.1.20",
+      "sha1": "9def93730ff19f307ec3e6f07d6508fe30ac977e",
+      "images": [
+        {
+          "sha1": "9def93730ff19f307ec3e6f07d6508fe30ac977e",
+          "sha256": "03a95a88520622ff400ee1cdc2536daa1773608f665734369aa22cb69db67b27",
+          "version": "sfvkjbw2y982y3283",
+          "tag": "v2.1.20",
+          "id": "jkjldfjkldf"
+        }
+      ]
+    },
+    {
+      "id": "293746239ugkedfsus97t3SDfb2",
+      "name": "peanuts-service",
+      "maxVersion": "v2.1.19",
+      "sha1": "sdkjfbw48204826928382087yr925",
+      "images": [
+        {
+          "sha1": "sdkjfbw48204826928382087yr925",
+          "sha256": "2376938yh2o3u293r2o2h3",
+          "version": "ljsbcvo48284",
+          "tag": "v2.1.19",
+          "id": "jkjldfjklddffdf"
+        },
+        {
+          "sha1": "sdkjfbw48204826928382087yr925",
+          "sha256": "2376938yh2o3u293r2o2h3",
+          "version": "ljsbcvo48284",
+          "tag": "v2.1.18",
+          "id": "jkjldfjklddsfdsfsdffdf"
+        }
+      ]
+    }
+  ]
+}

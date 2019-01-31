@@ -1,0 +1,8 @@
+.idea
+*.log
+*.xml
+*.out
+vendor
+_vendor-*
+*.test
+bin

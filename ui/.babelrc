@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "transform-custom-element-classes",
+    "transform-object-rest-spread",
+    "transform-export-extensions",
+    "transform-class-properties",
+    "syntax-jsx",
+    "transform-flow-strip-types",
+    "react-hot-loader/babel"
+  ],
+  "presets": [
+    "react"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["es2015"]
+      ]
+    }
+  }
+}

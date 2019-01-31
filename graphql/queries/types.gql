@@ -1,0 +1,15 @@
+type Image {
+  sha1: String
+  sha265: String
+  maxVersion: String
+  tag: String
+}
+
+type ImageGroup {
+  name: String
+  repository: String
+  semVer: String
+  images: [
+    Image
+  ],
+}
