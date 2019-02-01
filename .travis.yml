@@ -9,6 +9,7 @@ matrix:
     - language: go
       go:
         - "1.11"
+      install: make get
       script:
         - make test
         - make build
