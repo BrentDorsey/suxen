@@ -57,7 +57,7 @@ export default class Search extends React.Component {
     return (
       <div className="container">
         <div className={scss.section}>
-          <div className={scss.title}>Sux&#601;n</div>
+          <div className={scss.title}>Sux<div className={scss.suxen}>e</div>n</div>
           <div className={scss.subtitle}>Container viewer for Nexus</div>
           <div className={scss.flex}>
             <input className={scss.input}
