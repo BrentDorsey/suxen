@@ -23,7 +23,7 @@ const Results = props => {
     if (props.version === "" || props.version === undefined) {
       return (null)
     }
-    return (<span>:<span className={scss.currentVersion}>{props.version}</span></span>)
+    return (<div className={scss.currentVersion}>{props.version}</div>)
   }
 
 
@@ -45,19 +45,20 @@ const Results = props => {
                   <ImageGroupCreationDate createdAt={imageGroup.createdAt}/>
                   <div className={scss.clearBoth}></div>
               </h3>
-              <p><FontAwesomeIcon icon={faHashtag}/> {imageGroup.checksum.sha256}</p>
+              <p className={scss.sha256}><FontAwesomeIcon icon={faHashtag}/> {imageGroup.checksum.sha256}</p>
               <p>
                 <Author author={imageGroup.author}/>
               </p>
               <div className="images">
-                <h4>Images</h4>
                 {
                   imageGroup.images.map(image => {
                     var pullUrl = image.pullUrl;
                     return (
                       <div className="image">
-                        <FontAwesomeIcon icon={faDocker}/> <span className="name">{image.name}:</span><a
-                        href={image.manifestUrl}>{image.version}</a>
+                        <div>
+                          <FontAwesomeIcon icon={faDocker}/> <span className="name">{image.name}:</span><a
+                          href={image.manifestUrl}>{image.version}</a>
+                        </div>
                         <input className={scss.dockerPull} type="text" name="country" value={`docker pull ${pullUrl}`}
                                readOnly/>
                       </div>

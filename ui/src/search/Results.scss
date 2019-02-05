@@ -142,15 +142,12 @@
   }
 }
 
-.images {
-  h4 {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 48px;
-    margin: 2rem 0 1px 0;
-    border-bottom: 1px solid #d6d6d6;
-  }
+:local(.sha256) {
+  font-size: .7rem;
+  color: #929292;
+}
 
+.images {
   p {
     padding: 10px 0 0 0;
     margin: 0;
@@ -171,13 +168,15 @@
     border-bottom: 1px solid #d6d6d6;
     margin: 0 0 1px 0;
     padding: 0.4rem;
-
+    &:first-child {
+      border-top: 1px solid #d6d6d6;
+    }
     &:nth-child(even) {
-      background-color: #f3f3f3;
+      background-color: #fff;
     }
 
     &:nth-child(odd) {
-      background-color: #fff;
+      background-color: #f3f3f3;
     }
 
     .name {
