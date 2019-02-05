@@ -23,7 +23,7 @@ const Results = props => {
     if (props.version === "" || props.version === undefined) {
       return (null)
     }
-    return (<span>:<span className={scss.currentVersion}>{props.version}</span></span>)
+    return (<div className={scss.currentVersion}>{props.version}</div>)
   }
 
 
