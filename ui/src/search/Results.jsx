@@ -50,7 +50,6 @@ const Results = props => {
                 <Author author={imageGroup.author}/>
               </p>
               <div className="images">
-                <h4>Images</h4>
                 {
                   imageGroup.images.map(image => {
                     var pullUrl = image.pullUrl;
