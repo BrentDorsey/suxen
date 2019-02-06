@@ -1,6 +1,6 @@
 import React from 'react';
-import Moment from 'react-moment';
 import scss from './Results.scss';
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 
 const Results = props => {
   if (props.imageGroups === undefined) {
@@ -26,7 +26,13 @@ const Results = props => {
     if (props.createdAt === "" || props.createdAt === undefined) {
       return (null)
     }
-    return ( <span className="fromNow"><div className={scss.calendarIcon}/> <Moment className={scss.ago} fromNow>{props.createdAt}</Moment></span>)
+    return <span className="fromNow">
+      <div className={scss.calendarIcon}/>
+      <span>
+        {distanceInWordsToNow(props.createdAt)} ago
+      </span>
+      </span>
+
   }
 
   return (
@@ -36,9 +42,9 @@ const Results = props => {
           <div className={scss.section} key={imageGroup.checksum.sha1}>
             <div className={scss.resultSection}>
               <h3 className="groupName">
-                  <span>{imageGroup.name} <ImageGroupVersion version={imageGroup.version}/></span>
-                  <ImageGroupCreationDate createdAt={imageGroup.createdAt}/>
-                  <div className={scss.clearBoth}></div>
+                <span>{imageGroup.name} <ImageGroupVersion version={imageGroup.version}/></span>
+                <ImageGroupCreationDate createdAt={imageGroup.createdAt}/>
+                <div className={scss.clearBoth}></div>
               </h3>
               <p className={scss.sha256}># {imageGroup.checksum.sha256}</p>
               <p>
@@ -51,7 +57,8 @@ const Results = props => {
                     return (
                       <div className="image">
                         <div>
-                          <div className={scss.dockerIcon}/> <span className="name">{image.name}:</span><a
+                          <div className={scss.dockerIcon}/>
+                          <span className="name">{image.name}:</span><a
                           href={image.manifestUrl}>{image.version}</a>
                         </div>
                         <input className={scss.dockerPull} type="text" name="country" value={`docker pull ${pullUrl}`}
@@ -61,7 +68,10 @@ const Results = props => {
                   })
                 }
                 <p>
-                  <small><div className={scss.infoIcon}/> Triple click input field to select entire pull command.</small>
+                  <small>
+                    <div className={scss.infoIcon}/>
+                    Triple click input field to select entire pull command.
+                  </small>
                 </p>
               </div>
               <div>
