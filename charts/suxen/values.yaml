@@ -1,0 +1,103 @@
+# Default values for Suxen.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: quay.io/travelaudience/suxen
+  tag: v0.0.1
+  pullPolicy: Always
+  healthCheckPath: /explore
+
+envvar:
+  environment:
+    name: ENVIRONMENT
+    value: test
+  port:
+    name: SUXEND_PORT
+    value: 8080
+  static:
+    name: SUXEND_STATIC
+    value: /dist
+  logLevel:
+    name: SUXEND_LOG_LEVEL
+    value: info
+  logEnvironment:
+    name: SUXEND_LOG_ENVIRONMENT
+    value: stackdriver
+  nexusAddress:
+    name: SUXEND_NEXUS_ADDRESS
+    value: https://nexus.example.com
+  nexusRegistryAddress:
+    name: SUXEND_NEXUS_REGISTRY_ADDRESS
+    value: containers.example.com
+  nexusSvcAddress:
+    # if used in conjuction with directNexusService
+    #    set the value to be: http://<suxen.fullname>-direct:8081
+    #    where suxen.fullname is the name for the helm install of this chart
+    name: SUXEND_NEXUS_SVC_ADDRESS
+    value:
+  nexusRepository:
+    name: SUXEND_NEXUS_REPOSITORY
+    value: docker-hosted
+  nexusSvcAuthToken:
+    # optional basic auth token for nexus
+    name: SUXEND_NEXUS_SVC_AUTH_TOKEN
+    value: ""
+  nexusSearchPath:
+    name: SUXEND_NEXUS_SEARCH_PATH
+    value: service/rest/v1/search
+
+service:
+  type: NodePort
+  ports:
+  - name: grpc
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+directNexusService:
+  enabled: false
+  nexusApp: nexus
+  nexusRelease: nexus
+
+ingress:
+  enabled: false
+  annotations: {}
+  #   kubernetes.io/ingress.class: nginx
+  #   kubernetes.io/tls-acme: 'true'
+  path: /
+  host: suxen.example.com
+  tls:
+    secretName: suxen-tls
+
+oauth:
+  enabled: false
+  image: "a5huynh/oauth2_proxy:2.2"
+  clientId:
+  clientSecret:
+  # python -c 'import os,base64; print base64.b64encode(os.urandom(16))'
+  cookieSecret:
+  extraArgs:
+    email-domain: "*"
+    upstream: "file:///dev/null"
+    http-address: "0.0.0.0:4180"
+  tolerations: []
+  resources: {}
+
+resources: {}
+  # If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
