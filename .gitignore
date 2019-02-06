@@ -5,8 +5,6 @@
 vendor
 _vendor-*
 *.test
-
-# add back in the compiled binaries for short term frontend testing
-# bin
+bin
 
 ui/dist/*
