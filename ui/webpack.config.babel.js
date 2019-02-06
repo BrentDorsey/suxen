@@ -14,6 +14,7 @@ const devEntry = {
 };
 
 module.exports = {
+  mode: NODE_ENV,
   entry: isDev ? devEntry : prodEntry,
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -23,7 +24,6 @@ module.exports = {
     extensions: ['.jsx', '.js'],
   },
   module: {
-    mode: NODE_ENV,
     rules: [
       {
         test: /.jsx?$/,
