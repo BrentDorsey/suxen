@@ -1,0 +1,21 @@
+{{- if .Values.directNexusService.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "suxen.fullname" . }}-direct
+  labels:
+    app: {{ template "suxen.name" . }}
+    chart: {{ template "suxen.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: direct
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: {{ .Values.directNexusService.nexusApp }}
+    release: {{ .Values.directNexusService.nexusRelease }}
+{{- end -}}

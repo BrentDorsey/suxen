@@ -1,0 +1,22 @@
+{{- if .Values.oauth.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: oauth2-proxy
+  labels:
+    k8s-app: oauth2-proxy
+    app: {{ template "suxen.name" . }}
+    chart: {{ template "suxen.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 4180
+    protocol: TCP
+    targetPort: 4180
+  selector:
+    k8s-app: oauth2-proxy
+    release: {{ .Release.Name }}
+{{- end -}}
