@@ -55,7 +55,7 @@ func (c *configuration) init() {
 	flag.StringVar(&c.nexus.svc.address, "nexus.svc.address", "nexus:8080", "k8s endpoint of the nexus svc")
 	flag.StringVar(&c.nexus.svc.authToken, "nexus.svc.authToken", "", "if required, add basic auth token")
 	flag.StringVar(&c.nexus.repository, "nexus.repository", "docker-hosted", "nexus repository to search within")
-	flag.StringVar(&c.nexus.searchPath, "nexus.searchPath", "service/rest/beta/search", "uri for searching repositories")
+	flag.StringVar(&c.nexus.searchPath, "nexus.searchPath", "service/rest/v1/search", "uri for searching repositories")
 	flag.StringVar(&c.nexus.registry.address, "nexus.registry.address", "containers.example.com", "hostname from docker can pull images")
 }
 
