@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  go_build:
+    docker:
+      - image: circleci/golang:1.11
+    working_directory: /go/src/github.com/travelaudience/suxen
+    steps:
+      - checkout
+      - run: make get
+      - run: make test
+      - run: make build
+      - persist_to_workspace:
+          root: /go/src/github.com/travelaudience/suxen
+          paths:
+            - bin
+            - scripts
+            - Dockerfile
+
+  js_build:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run: cd ui && yarn
+      - run: cd ui && yarn run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ui/dist
+
+  docker_build:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: .
+      - run: docker build -t quay.io/travelaudience/suxen:${CIRCLE_TAG:-latest} .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
+      - run: docker push quay.io/travelaudience/suxen:${CIRCLE_TAG:-latest}
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - go_build
+      - js_build
+      - docker_build:
+          requires:
+            - go_build
+            - js_build
