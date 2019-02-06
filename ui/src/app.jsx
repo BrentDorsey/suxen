@@ -14,7 +14,7 @@ import {HttpLink} from "apollo-boost";
 
 
 const client = new ApolloClient({
- link: new HttpLink({ uri: "/query" }),
+ link: new HttpLink({ uri: "http://localhost:8080/query" }),
  cache: new InMemoryCache(),
 });
 

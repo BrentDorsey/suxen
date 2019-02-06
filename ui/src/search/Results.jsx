@@ -1,11 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
 import scss from './Results.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faDocker from '@fortawesome/fontawesome-free-brands/faDocker';
-import faHashtag from '@fortawesome/fontawesome-free-solid/faHashtag';
-import faInfoCircle from '@fortawesome/fontawesome-free-solid/faInfoCircle';
-import faCalendarAlt from '@fortawesome/fontawesome-free-solid/faCalendarAlt';
 
 const Results = props => {
   if (props.imageGroups === undefined) {
@@ -31,7 +26,7 @@ const Results = props => {
     if (props.createdAt === "" || props.createdAt === undefined) {
       return (null)
     }
-    return ( <span className="fromNow"><FontAwesomeIcon icon={faCalendarAlt}/> <Moment className={scss.ago} fromNow>{props.createdAt}</Moment></span>)
+    return ( <span className="fromNow"><div className={scss.calendarIcon}/> <Moment className={scss.ago} fromNow>{props.createdAt}</Moment></span>)
   }
 
   return (
@@ -45,7 +40,7 @@ const Results = props => {
                   <ImageGroupCreationDate createdAt={imageGroup.createdAt}/>
                   <div className={scss.clearBoth}></div>
               </h3>
-              <p className={scss.sha256}><FontAwesomeIcon icon={faHashtag}/> {imageGroup.checksum.sha256}</p>
+              <p className={scss.sha256}># {imageGroup.checksum.sha256}</p>
               <p>
                 <Author author={imageGroup.author}/>
               </p>
@@ -56,7 +51,7 @@ const Results = props => {
                     return (
                       <div className="image">
                         <div>
-                          <FontAwesomeIcon icon={faDocker}/> <span className="name">{image.name}:</span><a
+                          <div className={scss.dockerIcon}/> <span className="name">{image.name}:</span><a
                           href={image.manifestUrl}>{image.version}</a>
                         </div>
                         <input className={scss.dockerPull} type="text" name="country" value={`docker pull ${pullUrl}`}
@@ -66,7 +61,7 @@ const Results = props => {
                   })
                 }
                 <p>
-                  <small><FontAwesomeIcon icon={faInfoCircle}/> Triple click input field to select entire pull command.</small>
+                  <small><div className={scss.infoIcon}/> Triple click input field to select entire pull command.</small>
                 </p>
               </div>
               <div>
