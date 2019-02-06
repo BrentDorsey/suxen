@@ -23,6 +23,7 @@ module.exports = {
     extensions: ['.jsx', '.js'],
   },
   module: {
+    mode: NODE_ENV,
     rules: [
       {
         test: /.jsx?$/,
