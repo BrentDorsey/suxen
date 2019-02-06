@@ -165,6 +165,7 @@
   height: 16px;
   display: inline-block;
   top: 2px;
+  right: 2px;
 }
 
 :local(.infoIcon) {
@@ -235,6 +236,7 @@
       &:focus {
         background-color: #fff;
         border-color: #b2d8e4;
+        outline: none;
       }
     }
   }
