@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const HTMLPlugin = require('html-webpack-plugin');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV === 'development';
@@ -66,7 +65,7 @@ module.exports = {
     new HTMLPlugin({
       chunks: ['react-hot-loader/patch', 'app'],
       chunksSortMode: 'manual',
-      title: 'TAs Nexus Image Search'
+      title: 'Suxen: Nexus Image Search'
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),

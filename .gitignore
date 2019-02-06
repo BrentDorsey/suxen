@@ -8,3 +8,5 @@ _vendor-*
 
 # add back in the compiled binaries for short term frontend testing
 # bin
+
+ui/dist/*

@@ -10,8 +10,8 @@ import {
   Switch,
   BrowserRouter,
 } from 'react-router-dom';
-import {HttpLink} from "apollo-boost";
 
+import { HttpLink } from "apollo-link-http";
 
 const client = new ApolloClient({
  link: new HttpLink({ uri: "/query" }),
