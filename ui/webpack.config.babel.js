@@ -76,6 +76,11 @@ module.exports = {
   devServer: {
     port: process.env.PORT || 8008,
     hotOnly: true,
+    proxy: {
+      '/query': {
+        target: 'http://localhost:8080'
+      }
+    }
   },
   devtool: 'cheap-module-source-map',
 };
