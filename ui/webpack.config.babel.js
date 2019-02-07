@@ -14,6 +14,7 @@ const devEntry = {
 };
 
 module.exports = {
+  mode: NODE_ENV,
   entry: isDev ? devEntry : prodEntry,
   output: {
     path: path.resolve(__dirname, 'dist/'),
