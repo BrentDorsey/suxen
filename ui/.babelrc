@@ -1,15 +1,11 @@
 {
   "plugins": [
-    "transform-custom-element-classes",
-    "transform-object-rest-spread",
-    "transform-export-extensions",
-    "transform-class-properties",
-    "syntax-jsx",
-    "transform-flow-strip-types",
-    "react-hot-loader/babel"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import"
   ],
   "presets": [
-    "react"
+    "@babel/react"
   ],
   "env": {
     "test": {
