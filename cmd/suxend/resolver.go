@@ -31,11 +31,37 @@ func (r *resolver) Search(ctx context.Context, args struct{ Query *string }) ([]
 	}
 
 	var res []*imageGroupResolver
+	var imageSets []*ImageSet
 	for _, group := range r.client.IntoImageGroups(ctx, items) {
+		imageSets = addImageGroupToSet(imageSets, group.Name, group)
 		res = append(res, &imageGroupResolver{val: group, config: r.config})
 	}
+
+	// fmt.Printf("\nall sets: %v", imageSets)
+	// for _, set := range imageSets {
+	// 	fmt.Printf("\nthe set: %v", set)
+	// }
+
 	return res, nil
 }
+
+func addImageGroupToSet(sets []*ImageSet, name string, group nexus.ImageGroup) []*ImageSet {
+	for _, set := range sets {
+		if set.Name == name {
+			set.ImageGroups = append(set.ImageGroups, group)
+			return sets
+		}
+	}
+	// fmt.Println("\n  NEW key added to set", name)
+	n := &ImageSet{Name: name, ImageGroups: []nexus.ImageGroup{group}}
+	return append(sets, n)
+}
+
+type ImageSet struct {
+	Name        string
+	ImageGroups []nexus.ImageGroup
+}
+
 
 type imageGroupResolver struct {
 	config configuration
